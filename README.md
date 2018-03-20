@@ -1,4 +1,7 @@
-# sticker
+<p align="center">
+  <img height="100" src="https://s3.amazonaws.com/sticker-github/sticker.png" alt="Sticker Logo">
+</p>
+
 Sticker place together your OpenAPI 3.0 spec with your Python functions.
 
 Fun to Write:
