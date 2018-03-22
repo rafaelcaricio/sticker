@@ -19,17 +19,24 @@ Key features:
 
 ### It's Easy to Write:
 ```python
-from sticker.runtimes import FlaskApp
-app = FlaskApp(filename="hello_api.yml")
-
-def hello():
+def say_hello(params):
     return {"content": "Hello World!"}
+
+# hello.py
+```
+
+```yml
+openapi: "3.0.0"
+paths:
+  /:
+    get:
+      operationId: hello.say_hello
 ```
 
 ### And Familiar to Run:
 ```
 pip install sticker Flask
-FLASK_APP=hello.py flask run
+sticker run flask hello_api.yml
 ```
 
 No _glue code_ necessary to bring to life your APIs. All validation, content negotiation, type checking, and mocking is handled at runtime by Sticker.
