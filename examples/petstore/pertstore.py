@@ -5,7 +5,7 @@ PETS_STORAGE = []
 
 
 def list_pets(params):
-    limit = min(params.get('limit', 0), 100)
+    limit = min(params.get('limit', 100), 100)
     return {'content': PETS_STORAGE[:limit]}
 
 

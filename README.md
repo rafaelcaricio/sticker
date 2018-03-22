@@ -20,10 +20,10 @@ Key features:
 ### It's Easy to Write:
 ```python
 from sticker.runtimes import FlaskApp
-app = FlaskApp(filename='hello_api.yml')
+app = FlaskApp(filename="hello_api.yml")
 
 def hello():
-    return "Hello World!"
+    return {"content": "Hello World!"}
 ```
 
 ### And Familiar to Run:
@@ -77,7 +77,7 @@ def test_myhandler():
         "name": "John Doe"
     }
     response = myhandler(params)
-    assert response['content'] == "Hello John Doe!"
+    assert response["content"] == "Hello John Doe!"
 ```
 
 ## Error Handling
@@ -89,7 +89,7 @@ and called every time validation for the endpoint fails.
 def error_handler(error):
     return {
         "content": {
-            "error": error['message']
+            "error": error["message"]
         },
         "headers": {
             "Content-Type": "application/json"
