@@ -18,28 +18,38 @@ Key features:
  - Support for __pure Python handlers__ (no boilerplate code)
 
 ### It's Easy to Write:
+
 You need a little bit of Python.
+
 ```python
+# filename: hello.py
+from sticker import FlaskAPI
+api = FlaskAPI('hello.yml')
+
 def say_hello(params):
     return {"content": "Hello World!"}
 
-# filename: hello.py
+app = api.get_app(__name__)
 ```
-Plus bits of specification.
+
+Plus bits of your API description.
+
 ```yml
+# filename: hello.yml
 openapi: "3.0.0"
 paths:
   /:
     get:
       operationId: say_hello
 
-# filename: hello.yml
 ```
 
 Finally we _sticker_ it together.
+
 ```
 pip install sticker Flask
-sticker run flask hello.yml
+export FLASK_APP=hello.py
+python3 -m flask run
 ```
 
 No _glue code_ necessary to bring to life your API. All validation, content negotiation, type checking, and mocking is handled at runtime by Sticker.

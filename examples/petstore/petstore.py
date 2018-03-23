@@ -1,5 +1,5 @@
-from sticker.runtimes import FlaskApp
-app = FlaskApp(filename='petstore.yaml')
+from sticker import FlaskAPI
+api = FlaskAPI('petstore.yml')
 
 PETS_STORAGE = []
 
@@ -21,3 +21,7 @@ def show_pet_by_id(params):
         if pet['id'] == pet_id:
             return {'content': pet}
     return {'status_code': 404}
+
+
+if __name__ == '__main__':
+    api.get_app(__name__).run()
