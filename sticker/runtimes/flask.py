@@ -1,6 +1,14 @@
 
 from .base import BaseAPI
 from ..openapi import OpenAPISpec
+from typing import Dict, Callable
+from flask import request
+
+
+def flask_handler(method_to_func):
+    def _route(*args, **kwargs):
+        return method_to_func[request.method](*args, **kwargs)
+    return _route
 
 
 class FlaskAPI(BaseAPI):
@@ -16,12 +24,17 @@ class FlaskAPI(BaseAPI):
 
     def register_to(self, flask_app) -> None:
         for path in self.spec.paths():
+            method_to_func: Dict[str, Callable] = {}
             for operation in path.operations():
-                register = flask_app.route(
-                    path.url_path(),
-                    methods=[operation.http_method()]
-                )
-                register(self.wrap_handler(operation.resolve_function()))
+                method_to_func[operation.http_method()] = operation.resolve_function()
+
+            flasked_path = path.url_path().replace('{', '<').replace('}', '>')
+            flask_app.add_url_rule(
+                rule=flasked_path,
+                endpoint=path.url_path(),
+                view_func=self.wrap_handler(flask_handler(method_to_func)),
+                methods=list(method_to_func.keys())
+            )
 
     def to_python_literals(self, *args, **kwargs):
         """

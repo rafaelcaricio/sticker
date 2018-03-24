@@ -1,4 +1,7 @@
+import json
+
 from sticker import FlaskAPI
+
 api = FlaskAPI('petstore.yml')
 
 PETS_STORAGE = []
@@ -6,7 +9,7 @@ PETS_STORAGE = []
 
 def list_pets(params):
     limit = min(params.get('limit', 100), 100)
-    return {'content': PETS_STORAGE[:limit]}
+    return {'contents': json.dumps(PETS_STORAGE[:limit])}
 
 
 def create_pets(params):
@@ -19,7 +22,7 @@ def show_pet_by_id(params):
     pet_id = params['petId']
     for pet in PETS_STORAGE:
         if pet['id'] == pet_id:
-            return {'content': pet}
+            return {'contents': json.dumps(pet)}
     return {'status_code': 404}
 
 

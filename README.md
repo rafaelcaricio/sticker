@@ -24,11 +24,11 @@ You need a little bit of Python.
 ```python
 # filename: hello.py
 from sticker import FlaskAPI
-api = FlaskAPI('hello.yml')
 
 def say_hello(params):
-    return {"content": "Hello World!"}
+    return {"contents": "Hello World!"}
 
+api = FlaskAPI('hello.yml')
 app = api.get_app(__name__)
 ```
 
@@ -47,9 +47,9 @@ paths:
 Finally we _sticker_ it together.
 
 ```
-pip install sticker Flask
-export FLASK_APP=hello.py
-python3 -m flask run
+$ pip install sticker Flask
+$ export FLASK_APP=hello.py
+$ python3 -m flask run
 ```
 
 No _glue code_ necessary to bring to life your API. All validation, content negotiation, type checking, and mocking is handled at runtime by Sticker.
