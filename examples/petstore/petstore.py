@@ -1,9 +1,5 @@
 import json
 
-from sticker import FlaskAPI
-
-api = FlaskAPI('petstore.yml')
-
 PETS_STORAGE = []
 
 
@@ -26,5 +22,17 @@ def show_pet_by_id(params):
     return {'status_code': 404}
 
 
-if __name__ == '__main__':
+def run_with_flask():
+    from sticker import FlaskAPI
+    api = FlaskAPI('petstore.yml')
     api.get_app(__name__).run()
+
+
+def run_with_bottle():
+    from sticker import BottleAPI
+    api = BottleAPI('petstore.yml')
+    api.run()
+
+
+if __name__ == '__main__':
+    run_with_bottle()
