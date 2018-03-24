@@ -9,10 +9,10 @@ class BaseAPI:
             return file.read()
 
     def wrap_handler(self, bare_function: Callable):
-        def _wapper(*args, **kwargs):
+        def _wrapper(*args, **kwargs):
             params = self.to_python_literals(*args, **kwargs)
             return self.back_to_framework(bare_function(params))
-        return _wapper
+        return _wrapper
 
     @abstractmethod
     def to_python_literals(self, *args, **kwargs):

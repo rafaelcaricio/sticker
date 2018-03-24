@@ -50,4 +50,4 @@ class FlaskAPI(BaseAPI):
 
         :return:
         """
-        return result.get('contents', '')
+        return result.get('content', '')

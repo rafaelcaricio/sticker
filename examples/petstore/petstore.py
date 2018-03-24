@@ -9,7 +9,7 @@ PETS_STORAGE = []
 
 def list_pets(params):
     limit = min(params.get('limit', 100), 100)
-    return {'contents': json.dumps(PETS_STORAGE[:limit])}
+    return {'content': json.dumps(PETS_STORAGE[:limit])}
 
 
 def create_pets(params):
@@ -22,7 +22,7 @@ def show_pet_by_id(params):
     pet_id = params['petId']
     for pet in PETS_STORAGE:
         if pet['id'] == pet_id:
-            return {'contents': json.dumps(pet)}
+            return {'content': json.dumps(pet)}
     return {'status_code': 404}
 
 
