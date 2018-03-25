@@ -47,7 +47,7 @@ class BaseAPI:
 
 
 class FlaskLikeAPI(BaseAPI):
-    def __init__(self, spec_filename: str, request):
+    def __init__(self, spec_filename: str, request=None):
         self.request = request
         super().__init__(spec_filename)
 
@@ -58,9 +58,11 @@ class FlaskLikeAPI(BaseAPI):
     def register_path(self, path: SpecPath) -> None:
         method_to_func: Dict[str, Callable] = {}
         for operation in path.operations():
-            method_to_func[operation.http_method()] = operation.resolve_function()
+            method_to_func[operation.http_method()] = self.wrap_handler(
+                operation.resolve_function())
+
         route_path = self.translate_route_format(path)
-        view_func = self.wrap_handler(self.route_call_by_http_method(method_to_func))
+        view_func = self.route_call_by_http_method(method_to_func)
         self.register_route(
             rule=route_path,
             endpoint=path.url_path(),
