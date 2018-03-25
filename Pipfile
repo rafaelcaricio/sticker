@@ -11,6 +11,8 @@ pyyaml = "*"
 flask = "*"
 bottle = "*"
 tornado = "*"
+sanic = "*"
+aiohttp = "*"
 
 
 [dev-packages]

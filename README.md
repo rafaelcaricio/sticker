@@ -12,6 +12,7 @@ Key features:
  - Support for [__OpenAPI 3.0__](https://swagger.io/specification/)
  - Multi-framework support:
  [__Flask__](http://flask.pocoo.org/),
+ [__bottle.py__](https://github.com/bottlepy/bottle),
  [__Sanic__](https://github.com/channelcat/sanic),
  and
  [__Tornado__](http://www.tornadoweb.org/en/stable/)
