@@ -24,5 +24,11 @@ def run_with_tornado():
     tornado.ioloop.IOLoop.current().start()
 
 
+def run_with_sanic():
+    from sticker import SanicAPI
+    api = SanicAPI('hello.yml')
+    api.get_app(__name__).run()
+
+
 if __name__ == '__main__':
-    run_with_tornado()
+    run_with_sanic()

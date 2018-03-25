@@ -1,3 +1,5 @@
+import asyncio
+
 from typing import Callable, Dict
 from sanic import Sanic, response
 
@@ -18,9 +20,14 @@ class SanicAPI(FlaskLikeAPI):
         self.app.route(uri=rule, methods=methods, name=endpoint)(view_func)
 
     def wrap_handler(self, bare_function: Callable):
-        async def _wrapper(request, *args, **kwargs):
-            params = self.to_python_literals(request, *args, **kwargs)
-            return self.back_to_framework(await bare_function(params))
+        if asyncio.iscoroutine(bare_function):
+            async def _wrapper(request, *args, **kwargs):
+                params = self.to_python_literals(request, *args, **kwargs)
+                return self.back_to_framework(await bare_function(params))
+        else:
+            def _wrapper(request, *args, **kwargs):
+                params = self.to_python_literals(request, *args, **kwargs)
+                return self.back_to_framework(bare_function(params))
         return _wrapper
 
     def route_call_by_http_method(self, method_to_func: Dict[str, Callable]) -> Callable:
