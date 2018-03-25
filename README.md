@@ -24,13 +24,9 @@ You need a little bit of Python.
 
 ```python
 # filename: hello.py
-from sticker import FlaskAPI
 
 def say_hello(params):
     return {"contents": "Hello World!"}
-
-api = FlaskAPI('hello.yml')
-app = api.get_app(__name__)
 ```
 
 Plus bits of your API description.
@@ -41,19 +37,42 @@ openapi: "3.0.0"
 paths:
   /:
     get:
-      operationId: say_hello
-
+      operationId: hello.say_hello
 ```
 
-Finally we _sticker_ it together.
+Now the fun part, you choose which web framework you want to use.
 
-```
-$ pip install sticker Flask
-$ export FLASK_APP=hello.py
-$ python3 -m flask run
+Run with Flask:
+```python
+from sticker import FlaskAPI
+api = FlaskAPI('hello.yml')
+api.get_app(__name__).run()
 ```
 
-No _glue code_ necessary to bring to life your API. All validation, content negotiation, type checking, and mocking is handled at runtime by Sticker.
+Run with Bottle.py:
+```python
+from sticker import BottleAPI
+api = BottleAPI('hello.yml')
+api.run()
+```
+
+Run with Sanic:
+```python
+from sticker import SanicAPI
+api = SanicAPI('hello.yml')
+api.get_app(__name__).run()
+```
+
+Run with Tornado:
+```python
+from sticker import TornadoAPI
+import tornado.ioloop
+api = TornadoAPI('hello.yml')
+api.get_app().listen(8888)
+tornado.ioloop.IOLoop.current().start()
+```
+
+The framework setup, validation, types conversion, and mocking is handled at runtime by Sticker.
 
 ✨
 
