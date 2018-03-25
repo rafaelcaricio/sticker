@@ -10,8 +10,10 @@ name = "pypi"
 pyyaml = "*"
 flask = "*"
 bottle = "*"
+tornado = "*"
 
 
 [dev-packages]
 
 pytest = "*"
+ipython = "*"

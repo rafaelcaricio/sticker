@@ -5,8 +5,9 @@ from ..openapi import OpenAPISpec, SpecPath
 
 
 class BaseAPI:
-    def __init__(self, spec: OpenAPISpec):
-        self.spec = spec
+    def __init__(self, spec_filename: str):
+        self.contents = self.read_file_contents(spec_filename)
+        self.spec = OpenAPISpec(self.contents)
 
     @staticmethod
     def read_file_contents(filename: str):
@@ -48,8 +49,7 @@ class BaseAPI:
 class FlaskLikeAPI(BaseAPI):
     def __init__(self, spec_filename: str, request):
         self.request = request
-        self.contents = self.read_file_contents(spec_filename)
-        super().__init__(OpenAPISpec(self.contents))
+        super().__init__(spec_filename)
 
     def register_routes(self) -> None:
         for path in self.spec.paths():
