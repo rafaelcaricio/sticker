@@ -4,7 +4,7 @@
 
 > Sticker is the glue between Python functions and your API design.
 
-Let your Python functions automatically become your API handlers. Sticker allows you to choose Flask,
+Let your Python functions automatically become your API handlers. Sticker allows you to choose Flask, bottle.py,
 Sanic, or Tornado as your application runtime.
 
 Key features:
