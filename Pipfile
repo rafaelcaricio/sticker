@@ -19,3 +19,4 @@ aiohttp = "*"
 
 pytest = "*"
 ipython = "*"
+webtest = "*"

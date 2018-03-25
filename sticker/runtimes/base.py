@@ -1,4 +1,6 @@
 from abc import abstractmethod
+from os import path
+import sys
 from typing import Dict, Callable
 
 from ..openapi import OpenAPISpec, SpecPath
@@ -6,8 +8,14 @@ from ..openapi import OpenAPISpec, SpecPath
 
 class BaseAPI:
     def __init__(self, spec_filename: str):
+        self.setup_path(spec_filename)
         self.contents = self.read_file_contents(spec_filename)
         self.spec = OpenAPISpec(self.contents)
+
+    @staticmethod
+    def setup_path(spec_filename):
+        handlers_base_path = path.dirname(path.abspath(spec_filename))
+        sys.path.insert(1, path.abspath(handlers_base_path))
 
     @staticmethod
     def read_file_contents(filename: str):
