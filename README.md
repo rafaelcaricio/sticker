@@ -129,7 +129,7 @@ This is only possible because Sticker expects your handlers to follow a code con
 
 ...
 
-### API responses
+### Responses
 
 API handlers are expected to return a Python dictionary (`dict`) object. The returned dictionary defines how a response
 will look like. All keys in the dictionary are optional. The expected keys are described in the table bellow.
@@ -142,6 +142,45 @@ file | Union[IO[AnyStr], str] | Data to be returned as byte stream. This is a sh
 redirect | str | The path or full URL to be redirected. This is a shortcut for having the header "Location:" with HTTP status `301`.
 status | int | The HTTP status code to be used in the response. This value overrides any shortcut default status code.
 headers | Dict[str, str] | The HTTP headers to be used in the response. This value is merged with the shortcut values with priority.
+
+We have exposed here some examples of using different configurations of the `dict` we've defined above to describe the
+HTTP response of API handlers. The actual HTTP response value generated will vary depending on the framework chosen as
+runtime. The examples are a minimal illustration of what to expect to be the HTTP response.
+
+The "content" key can be used when it's desired to return a "Hello world!" string with status `200`.
+
+```python
+def say_hello(params):
+    return {"content": "Hello world!"}
+```
+
+Results in the HTTP response similar to:
+
+```
+HTTP/1.1 200 OK
+Content-Type: text/plain
+
+Hello world!
+```
+
+The "json" key can be used when desired to return an JSON response with status `201`.
+
+```python
+def create(params):
+    data = {
+        "id": "uhHuehuE",
+        "value": "something"
+    }
+    return {"json": data, "status": 201}
+```
+
+The HTTP response generated will be similar to:
+```
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{"id":"uhHuehuE","value":"something"}
+```
 
 ## Error Handling
 
