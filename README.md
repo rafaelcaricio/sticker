@@ -99,8 +99,8 @@ In this document we will describe a few different ways to write code that works 
 ## Pure Python Handlers
 
 Sticker supports the use of pure Python functions as handlers. Your code will be free of any framework
-specific boilerplate code. This allows you to swap between different frameworks as you wish. Sticker will
-take care of putting together your code, your API, and the framework you choose.
+specific boilerplate code, including Sticker's itself. This allows you to swap between different frameworks
+as you wish. Sticker will take care of putting together your code, your API, and the framework you choose.
 
 ```python
 def myhandler(params):
@@ -121,6 +121,27 @@ def test_myhandler():
     response = myhandler(params)
     assert response["content"] == "Hello John Doe!"
 ```
+
+As you could see in the example above, no imports from Sticker were necessary to define the API handler function.
+This is only possible because Sticker expects your handlers to follow a code convention.
+
+### Anatomy of an API handler function
+
+...
+
+#### API responses
+
+API handlers are expected to return a Python dictionary (`dict`) object. The returned dictionary defines how a response
+will look like. All keys in the dictionary are optional. The expected keys are described in the table bellow.
+
+Key | Type |  Description
+----|------|----
+content | str | Body of HTTP request. No treatment/parsing of this value is done. The value is passed directly to the chosen framework.
+json | Union[dict, List[dict]] | JSON value to be used in the body of the request. This is a shortcut to having the header "Content-Type: application/json" and serializing this value using the most common way done by the chosen framework.
+file | Union[IO[AnyStr], str] | Data to be returned as byte stream. This is a shortcut for having the header "Content-Type: application/octet-stream". Uses the most common way to stream files with the chosen framework.
+redirect | str | The path or full URL to be redirected. This is a shortcut for having the header "Location:" with HTTP status `301`.
+status | int | The HTTP status code to be used in the response. This value overrides any shortcut default status code.
+headers | Dict[str, str] | The HTTP headers to be used in the response. This value is merged with the shortcut values with priority.
 
 ## Error Handling
 
