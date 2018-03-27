@@ -214,7 +214,7 @@ The HTTP response will be similar to:
 
 ```
 HTTP/1.1 301 Moved Permanently
-Location: http//example.com/new-path
+Location: https://example.com/new-path
 ```
 
 The usage of keys "status" and "headers" were shown in the previous examples. The "status" and "headers" keys, when set,
