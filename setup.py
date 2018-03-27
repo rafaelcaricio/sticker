@@ -101,17 +101,34 @@ setup(
     #     'console_scripts': ['mycli=mymodule:cli'],
     # },
     install_requires=REQUIRED,
+    extras_require={
+        'tornado': ['tornado>=5.0.1'],
+        'bottle': ['bottle>=0.12.13'],
+        'flask': ['flask>=0.12.2'],
+        'sanic': ['sanic>=0.7.0'],
+    },
     include_package_data=True,
     license='Apache 2.0',
     classifiers=[
         # Trove classifiers
         # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-        'License :: OSI Approved :: MIT License',
+        'Development Status :: 2 - Pre-Alpha',
+        'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3 :: Only',
         'Programming Language :: Python :: Implementation :: CPython',
-        'Programming Language :: Python :: Implementation :: PyPy'
+        'Programming Language :: Python :: Implementation :: PyPy',
+        'Framework :: Bottle',
+        'Framework :: AsyncIO',
+        'Framework :: Flask',
+        'Topic :: Internet :: WWW/HTTP',
+        'Topic :: Internet :: WWW/HTTP :: HTTP Servers',
+        'Topic :: Internet :: WWW/HTTP :: WSGI',
+        'Topic :: Internet :: WWW/HTTP :: WSGI :: Server',
+        'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     # $ setup.py publish support.
     cmdclass={
