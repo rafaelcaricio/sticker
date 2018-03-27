@@ -182,6 +182,44 @@ Content-Type: application/json
 {"id":"uhHuehuE","value":"something"}
 ```
 
+The "file" key is used to return file contents.
+
+```python
+def homepage(params):
+    return {
+        "file": open('templates/home.html', 'r'),
+        "headers": {
+            "Content-Type": "text/html"
+        }
+    }
+```
+
+The HTTP response will be similar to:
+
+```
+HTTP/1.1 200 OK
+Content-Type: text/html
+
+<html><title>My homepage</title><body><h1>Welcome!</h1></body></html>
+```
+
+When necessary to redirect request, the "redirect" key can be used.
+
+```python
+def old_endpoint(params):
+    return {'redirect': '/new-path'}
+```
+
+The HTTP response will be similar to:
+
+```
+HTTP/1.1 301 Moved Permanently
+Location: http//example.com/new-path
+```
+
+The usage of keys "status" and "headers" were shown in the previous examples. The "status" and "headers" keys, when set,
+override the values set by default when using the shortcut keys ("json", "file", and "redirect").
+
 ## Error Handling
 
 Sticker expects you to define the error format to be returned by your API. A error handler is configurable,
