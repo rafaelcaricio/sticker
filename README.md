@@ -129,7 +129,7 @@ This is only possible because Sticker expects your handlers to follow a code con
 
 ...
 
-#### API responses
+### API responses
 
 API handlers are expected to return a Python dictionary (`dict`) object. The returned dictionary defines how a response
 will look like. All keys in the dictionary are optional. The expected keys are described in the table bellow.
