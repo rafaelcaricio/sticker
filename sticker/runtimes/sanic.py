@@ -39,4 +39,6 @@ class SanicAPI(FlaskLikeAPI):
         return {}
 
     def back_to_framework(self, result):
-        return response.text(result.get('content', ''))
+        return response.text(result.get('content', ''),
+                             status=result.get('status', 200),
+                             headers=result.get('headers', {}))
