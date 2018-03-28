@@ -1,7 +1,19 @@
 .. image:: https://s3.amazonaws.com/sticker-github/sticker.png
-   :width: 150px
-   :align: center
-   :alt: Sticker
+    :align: center
+    :alt: Sticker
+    :target: https://github.com/rafaelcaricio/sticker
+
+.. image:: https://img.shields.io/pypi/v/sticker.svg
+    :target: https://pypi.python.org/pypi/sticker
+
+.. image:: https://img.shields.io/pypi/l/sticker.svg
+    :target: https://pypi.python.org/pypi/sticker
+
+.. image:: https://img.shields.io/pypi/pyversions/sticker.svg
+    :target: https://pypi.python.org/pypi/sticker
+
+.. image:: https://img.shields.io/github/contributors/rafaelcaricio/sticker.svg
+    :target: https://github.com/rafaelcaricio/sticker/graphs/contributors
 
 Write boilerplate-free Python functions and use them as your API handlers.
 Sticker allows you to choose Flask, bottle.py, Sanic, or Tornado as your
