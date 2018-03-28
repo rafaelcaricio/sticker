@@ -11,8 +11,7 @@ Highlights:
 
 * Community created and maintained
 * Support for `OpenAPI 3.0 <https://swagger.io/specification/>`_
-* Multi-framework support: `Flask <http://flask.pocoo.org/>`_, `bottle.py <https://github.com/bottlepy/bottle>`_,
- `Sanic <https://github.com/channelcat/sanic>`_, and `Tornado <http://www.tornadoweb.org/en/stable/>`_
+* Multi-framework support: `Flask <http://flask.pocoo.org/>`_, `bottle.py <https://github.com/bottlepy/bottle>`_, `Sanic <https://github.com/channelcat/sanic>`_, and `Tornado <http://www.tornadoweb.org/en/stable/>`_
 * Support for **pure Python handlers** (no boilerplate code)
 
 It's Easy to Write
@@ -253,7 +252,7 @@ and called every time validation for the endpoint fails.
 Contributing
 ============
 
-Sticker is developed under the [Apache 2.0 license](https://github.com/rafaelcaricio/sticker/blob/master/LICENSE)
+Sticker is developed under the `Apache 2.0 license <https://github.com/rafaelcaricio/sticker/blob/master/LICENSE>`_
 and is publicly available to everyone. We are happy to accept contributions by anyone.
 
 How to Contribute
