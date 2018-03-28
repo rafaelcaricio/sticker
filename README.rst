@@ -1,23 +1,23 @@
-**************************************************************
-Sticker: the glue between Python functions and your API design
-**************************************************************
-
 .. image:: https://s3.amazonaws.com/sticker-github/sticker.png
+   :width: 150px
+   :align: center
+   :alt: Sticker
 
 Write boilerplate-free Python functions and use them as your API handlers.
 Sticker allows you to choose Flask, bottle.py, Sanic, or Tornado as your
 application runtime.
 
 Highlights:
+
 * Community created and maintained
-* Support for [__OpenAPI 3.0__](https://swagger.io/specification/)
+* Support for `OpenAPI 3.0 <https://swagger.io/specification/>`_
 * Multi-framework support:
- [__Flask__](http://flask.pocoo.org/),
- [__bottle.py__](https://github.com/bottlepy/bottle),
- [__Sanic__](https://github.com/channelcat/sanic),
+ `Flask <http://flask.pocoo.org/>`_,
+ `bottle.py <https://github.com/bottlepy/bottle>`_,
+ `Sanic <https://github.com/channelcat/sanic>`_,
  and
- [__Tornado__](http://www.tornadoweb.org/en/stable/)
-* Support for __pure Python handlers__ (no boilerplate code)
+ `Tornado <http://www.tornadoweb.org/en/stable/>`_
+* Support for **pure Python handlers** (no boilerplate code)
 
 It's Easy to Write
 ==================
