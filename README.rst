@@ -1,4 +1,4 @@
-.. image:: https://s3.amazonaws.com/sticker-github/sticker.png
+.. image:: https://github.com/rafaelcaricio/sticker/raw/master/docs/images/sticker.png
     :align: center
     :alt: Sticker
     :target: https://github.com/rafaelcaricio/sticker
@@ -245,7 +245,8 @@ The HTTP response will be similar to:
 The usage of keys "status" and "headers" were shown in the previous examples. The "status" and "headers" keys, when set,
 override the values set by default when using the shortcut keys ("json", "file", and "redirect").
 
-## Error Handling
+Error Handling
+--------------
 
 Sticker expects you to define the error format to be returned by your API. A error handler is configurable,
 and called every time validation for the endpoint fails.
