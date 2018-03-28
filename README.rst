@@ -11,12 +11,8 @@ Highlights:
 
 * Community created and maintained
 * Support for `OpenAPI 3.0 <https://swagger.io/specification/>`_
-* Multi-framework support:
- `Flask <http://flask.pocoo.org/>`_,
- `bottle.py <https://github.com/bottlepy/bottle>`_,
- `Sanic <https://github.com/channelcat/sanic>`_,
- and
- `Tornado <http://www.tornadoweb.org/en/stable/>`_
+* Multi-framework support: `Flask <http://flask.pocoo.org/>`_, `bottle.py <https://github.com/bottlepy/bottle>`_,
+ `Sanic <https://github.com/channelcat/sanic>`_, and `Tornado <http://www.tornadoweb.org/en/stable/>`_
 * Support for **pure Python handlers** (no boilerplate code)
 
 It's Easy to Write
@@ -24,55 +20,59 @@ It's Easy to Write
 
 You need a little bit of Python.
 
-```python
-# filename: hello.py
+.. code-block:: python
 
-def say_hello(params):
-    return {"contents": "Hello World!"}
-```
+    # filename: hello.py
+
+    def say_hello(params):
+        return {"contents": "Hello World!"}
 
 Plus bits of your API description.
 
-```yml
-# filename: hello.yml
-openapi: "3.0.0"
-paths:
-  /:
-    get:
-      operationId: hello.say_hello
-```
+.. code-block:: yml
+
+    # filename: hello.yml
+    openapi: "3.0.0"
+    paths:
+      /:
+        get:
+          operationId: hello.say_hello
 
 Now the fun part, you choose which web framework you want to use.
 
 Run with Flask:
-```python
-from sticker import FlaskAPI
-api = FlaskAPI('hello.yml')
-api.get_app(__name__).run()
-```
+
+.. code-block:: python
+
+    from sticker import FlaskAPI
+    api = FlaskAPI('hello.yml')
+    api.get_app(__name__).run()
 
 Run with Bottle.py:
-```python
-from sticker import BottleAPI
-api = BottleAPI('hello.yml')
-api.run()
-```
+
+.. code-block:: python
+
+    from sticker import BottleAPI
+    api = BottleAPI('hello.yml')
+    api.run()
 
 Run with Sanic:
-```python
-from sticker import SanicAPI
-api = SanicAPI('hello.yml')
-api.get_app(__name__).run()
-```
+
+.. code-block:: python
+
+    from sticker import SanicAPI
+    api = SanicAPI('hello.yml')
+    api.get_app(__name__).run()
 
 Run with Tornado:
-```python
-from sticker import TornadoAPI
-import tornado.ioloop
-api = TornadoAPI('hello.yml')
-api.get_app().listen(8888)
-tornado.ioloop.IOLoop.current().start()
-```
+
+.. code-block:: python
+
+    from sticker import TornadoAPI
+    import tornado.ioloop
+    api = TornadoAPI('hello.yml')
+    api.get_app().listen(8888)
+    tornado.ioloop.IOLoop.current().start()
 
 The framework setup, validation, types conversion, and mocking is handled at runtime by Sticker.
 
@@ -83,9 +83,9 @@ Installation
 
 Sticker is published at PyPI, so you can use `pip` to install:
 
-```
-pip install sticker
-```
+.. code-block:: bash
+
+    $ pip install sticker
 
 Requirements
 ============
@@ -108,25 +108,25 @@ Sticker supports the use of pure Python functions as handlers. Your code will be
 specific boilerplate code, including Sticker's itself. This allows you to swap between different frameworks
 as you wish. Sticker will take care of putting together your code, your API, and the framework you choose.
 
-```python
-def myhandler(params):
-    return {
-        "content": f"Hello {params.get("name", "World")}!",
-        "status": 200
-    }
-```
+.. code-block:: python
+
+    def myhandler(params):
+        return {
+            "content": f"Hello {params.get("name", "World")}!",
+            "status": 200
+        }
 
 Writing tests for pure Python handles is easy and also
 free of boilerplate code.
 
-```python
-def test_myhandler():
-    params = {
-        "name": "John Doe"
-    }
-    response = myhandler(params)
-    assert response["content"] == "Hello John Doe!"
-```
+.. code-block:: python
+
+    def test_myhandler():
+        params = {
+            "name": "John Doe"
+        }
+        response = myhandler(params)
+        assert response["content"] == "Hello John Doe!"
 
 As you could see in the example above, no imports from Sticker were necessary to define the API handler function.
 This is only possible because Sticker expects your handlers to follow a code convention.
@@ -160,73 +160,74 @@ runtime. The examples are a minimal illustration of what to expect to be the HTT
 
 The "content" key can be used when it's desired to return a "Hello world!" string with status `200`.
 
-```python
-def say_hello(params):
-    return {"content": "Hello world!"}
-```
+.. code-block:: python
+
+    def say_hello(params):
+        return {"content": "Hello world!"}
 
 Results in the HTTP response similar to:
 
-```
-HTTP/1.1 200 OK
-Content-Type: text/plain
+.. code-block::
 
-Hello world!
-```
+    HTTP/1.1 200 OK
+    Content-Type: text/plain
+
+    Hello world!
 
 The "json" key can be used when desired to return an JSON response with status `201`.
 
-```python
-def create(params):
-    data = {
-        "id": "uhHuehuE",
-        "value": "something"
-    }
-    return {"json": data, "status": 201}
-```
+.. code-block:: python
+
+    def create(params):
+        data = {
+            "id": "uhHuehuE",
+            "value": "something"
+        }
+        return {"json": data, "status": 201}
 
 The HTTP response generated will be similar to:
-```
-HTTP/1.1 201 Created
-Content-Type: application/json
 
-{"id":"uhHuehuE","value":"something"}
-```
+.. code-block::
+
+    HTTP/1.1 201 Created
+    Content-Type: application/json
+
+    {"id":"uhHuehuE","value":"something"}
 
 The "file" key is used to return file contents.
 
-```python
-def homepage(params):
-    return {
-        "file": open('templates/home.html', 'r'),
-        "headers": {
-            "Content-Type": "text/html"
+.. code-block:: python
+
+    def homepage(params):
+        return {
+            "file": open('templates/home.html', 'r'),
+            "headers": {
+                "Content-Type": "text/html"
+            }
         }
-    }
-```
 
 The HTTP response will be similar to:
 
-```
-HTTP/1.1 200 OK
-Content-Type: text/html
+.. code-block::
 
-<html><title>My homepage</title><body><h1>Welcome!</h1></body></html>
-```
+    HTTP/1.1 200 OK
+    Content-Type: text/html
+
+    <html><title>My homepage</title><body><h1>Welcome!</h1></body></html>
 
 When necessary to redirect request, the "redirect" key can be used.
 
-```python
-def old_endpoint(params):
-    return {'redirect': '/new-path'}
-```
+.. code-block:: python
+
+    def old_endpoint(params):
+        return {'redirect': '/new-path'}
 
 The HTTP response will be similar to:
 
-```
-HTTP/1.1 301 Moved Permanently
-Location: https://example.com/new-path
-```
+.. code-block::
+
+    HTTP/1.1 301 Moved Permanently
+    Location: https://example.com/new-path
 
 The usage of keys "status" and "headers" were shown in the previous examples. The "status" and "headers" keys, when set,
 override the values set by default when using the shortcut keys ("json", "file", and "redirect").
@@ -236,18 +237,18 @@ override the values set by default when using the shortcut keys ("json", "file",
 Sticker expects you to define the error format to be returned by your API. A error handler is configurable,
 and called every time validation for the endpoint fails.
 
-```python
-def error_handler(error):
-    return {
-        "content": {
-            "error": error["message"]
-        },
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "status_code": 400
-    }
-```
+.. code-block:: python
+
+    def error_handler(error):
+        return {
+            "content": {
+                "error": error["message"]
+            },
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "status_code": 400
+        }
 
 Contributing
 ============
