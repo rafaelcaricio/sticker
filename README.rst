@@ -267,9 +267,16 @@ Contributing
 ============
 
 Sticker is developed under the `Apache 2.0 license <https://github.com/rafaelcaricio/sticker/blob/master/LICENSE>`_
-and is publicly available to everyone. We are happy to accept contributions by anyone.
+and is publicly available to everyone. We are happy to accept contributions.
 
 How to Contribute
 -----------------
 
-#. Check the open
+#. Check for open issues or open a fresh issue to start a discussion around a feature idea or a bug. There is a `Good First Issue`_ tag for issues that should be ideal for people who are not very familiar with the codebase yet.
+#. Fork `the repository`_ on GitHub to start making your changes to the **master** branch (or branch off of it).
+#. Write a test which shows that the bug was fixed or that the feature works as expected.
+#. Send a pull request and bug the maintainer until it gets merged and published. :) Make sure to add yourself to AUTHORS_.
+
+.. _`the repository`: https://github.com/rafaelcaricio/sticker
+.. _AUTHORS: https://github.com/rafaelcaricio/sticker/blob/master/AUTHORS.rst
+.. _Good First Issue: https://github.com/rafaelcaricio/sticker/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22
