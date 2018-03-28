@@ -1,4 +1,4 @@
-.. image:: https://github.com/rafaelcaricio/sticker/raw/master/docs/images/sticker.png
+.. image:: https://github.com/rafaelcaricio/sticker/raw/master/docs/images/sticker_logo.png
     :align: center
     :alt: Sticker
     :target: https://github.com/rafaelcaricio/sticker
