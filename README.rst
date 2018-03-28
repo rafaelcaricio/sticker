@@ -3,6 +3,8 @@
     :alt: Sticker
     :target: https://github.com/rafaelcaricio/sticker
 
+|
+
 .. image:: https://img.shields.io/pypi/v/sticker.svg
     :target: https://pypi.python.org/pypi/sticker
 
@@ -19,7 +21,7 @@ Write boilerplate-free Python functions and use them as your API handlers.
 Sticker allows you to choose Flask, bottle.py, Sanic, or Tornado as your
 application runtime.
 
-Highlights:
+**Highlights**:
 
 * Community created and maintained
 * Support for `OpenAPI 3.0 <https://swagger.io/specification/>`_
