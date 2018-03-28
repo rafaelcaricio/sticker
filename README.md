@@ -106,7 +106,7 @@ as you wish. Sticker will take care of putting together your code, your API, and
 def myhandler(params):
     return {
         "content": f"Hello {params.get("name", "World")}!",
-        "status_code": 200
+        "status": 200
     }
 ```
 
