@@ -19,16 +19,12 @@ def api_client_for(operation_id):
     paths:
         /:
             get:
-                operationId: {this_module}.{operation_id}
-    """.format(operation_id=operation_id, this_module=__name__)))
+                operationId: handlers.{operation_id}
+    """.format(operation_id=operation_id)))
     app = api.get_app(__name__)
     app.debug = True
     api_client = TestApp(app)
     return api_client
-
-
-def handler_set_status_code(params):
-    return {"status": 201}
 
 
 def test_set_status_code():
@@ -37,27 +33,10 @@ def test_set_status_code():
     assert response.body.decode() == ''
 
 
-def handler_set_status_and_content(params):
-    return {
-        "content": '{"id":"123"}',
-        "status": 201
-    }
-
-
 def test_set_status_and_content():
     response = api_client_for('handler_set_status_and_content').get('/')
     assert response.status == '201 CREATED'
     assert response.body.decode() == '{"id":"123"}'
-
-
-def handler_set_headers(params):
-    return {
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "content": '{"id":"123"}',
-        "status": 201
-    }
 
 
 def test_set_headers():

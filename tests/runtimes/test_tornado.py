@@ -28,12 +28,8 @@ class APIClientForTestCase(AsyncHTTPTestCase):
         paths:
             /:
                 get:
-                    operationId: {this_module}.{operation_id}
-        """.format(operation_id=self.operation_id, this_module=__name__)))
-
-
-def handler_set_status_code(params):
-    return {"status": 201}
+                    operationId: handlers.{operation_id}
+        """.format(operation_id=self.operation_id)))
 
 
 class TestSetStatusCode(APIClientForTestCase):
@@ -45,13 +41,6 @@ class TestSetStatusCode(APIClientForTestCase):
         self.assertEqual('', response.body.decode())
 
 
-def handler_set_status_and_content(params):
-    return {
-        "content": '{"id":"123"}',
-        "status": 201
-    }
-
-
 class TestSetStatusAndContent(APIClientForTestCase):
     operation_id = 'handler_set_status_and_content'
 
@@ -59,16 +48,6 @@ class TestSetStatusAndContent(APIClientForTestCase):
         response = self.fetch('/')
         self.assertEqual(201, response.code)
         self.assertEqual('{"id":"123"}', response.body.decode())
-
-
-def handler_set_headers(params):
-    return {
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "content": '{"id":"123"}',
-        "status": 201
-    }
 
 
 class TestSetHeaders(APIClientForTestCase):

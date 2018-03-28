@@ -18,13 +18,9 @@ def api_client_for(operation_id, test_client):
     paths:
         /:
             get:
-                operationId: {this_module}.{operation_id}
-    """.format(operation_id=operation_id, this_module=__name__)))
+                operationId: handlers.{operation_id}
+    """.format(operation_id=operation_id)))
     return test_client(api.get_app(__name__))
-
-
-def handler_set_status_code(params):
-    return {"status": 201}
 
 
 async def test_set_status_code(test_client):
@@ -34,10 +30,6 @@ async def test_set_status_code(test_client):
     assert '' == (await response.content.read()).decode()
 
 
-def handler_set_status_code_to_400(params):
-    return {"status": 400}
-
-
 async def test_set_status_code_to_400(test_client):
     api_client = await api_client_for('handler_set_status_code_to_400', test_client)
     response = await api_client.get('/')
@@ -45,35 +37,18 @@ async def test_set_status_code_to_400(test_client):
     assert (await response.content.read()).decode() == ''
 
 
-def handler_set_status_and_content(params):
-    return {
-        "content": '{"id":"123"}',
-        "status": 201
-    }
-
-
 async def test_set_status_and_content(test_client):
     api_client = await api_client_for('handler_set_status_and_content', test_client)
     response = await api_client.get('/')
-    assert response.status == 201
-    assert (await response.content.read()).decode() == '{"id":"123"}'
-
-
-def handler_set_headers(params):
-    return {
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "content": '{"id":"123"}',
-        "status": 201
-    }
+    assert 201 == response.status
+    assert '{"id":"123"}' == (await response.content.read()).decode()
 
 
 async def test_set_headers(test_client):
     api_client = await api_client_for('handler_set_headers', test_client)
     response = await api_client.get('/')
-    assert response.status == 201
-    assert (await response.content.read()).decode() == '{"id":"123"}'
+    assert 201 == response.status
+    assert '{"id":"123"}' == (await response.content.read()).decode()
     assert 'Content-Type' in response.headers
-    assert response.headers['Content-Type'] == 'application/json'
+    assert 'application/json' == response.headers['Content-Type']
 
