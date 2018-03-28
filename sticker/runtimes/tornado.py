@@ -54,6 +54,9 @@ class TornadoAPI(BaseAPI):
             result
     ):
         handler.write(result.get('content', ''))
+        handler.set_status(result.get('status', 200))
+        for header, value in result.get('headers', {}).items():
+            handler.set_header(header, value)
         handler.finish()
 
 
