@@ -1,14 +1,14 @@
 import asyncio
 
-from typing import Callable, Dict
+from typing import Callable, Dict, Optional
 from sanic import Sanic, response
 
 from .base import FlaskLikeAPI
 
 
 class SanicAPI(FlaskLikeAPI):
-    def __init__(self, spec_filename: str):
-        super().__init__(spec_filename)
+    def __init__(self, spec_filename: Optional[str]=None, spec_text: Optional[str]=None):
+        super().__init__(spec_filename=spec_filename, spec_text=spec_text)
         self.app: Sanic = None
 
     def get_app(self, *args, **kwargs):

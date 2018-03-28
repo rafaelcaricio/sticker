@@ -1,15 +1,18 @@
 from abc import abstractmethod
 from os import path
 import sys
-from typing import Dict, Callable
+from typing import Dict, Callable, Optional
 
 from ..openapi import OpenAPISpec, SpecPath
 
 
 class BaseAPI:
-    def __init__(self, spec_filename: str):
-        self.setup_path(spec_filename)
-        self.contents = self.read_file_contents(spec_filename)
+    def __init__(self, spec_filename: Optional[str]=None, spec_text: Optional[str]=None):
+        if spec_text:
+            self.contents = spec_text
+        else:
+            self.setup_path(spec_filename)
+            self.contents = self.read_file_contents(spec_filename)
         self.spec = OpenAPISpec(self.contents)
 
     @staticmethod
@@ -55,9 +58,9 @@ class BaseAPI:
 
 
 class FlaskLikeAPI(BaseAPI):
-    def __init__(self, spec_filename: str, request=None):
+    def __init__(self, spec_filename: Optional[str]=None, spec_text: Optional[str]=None, request=None):
         self.request = request
-        super().__init__(spec_filename)
+        super().__init__(spec_filename=spec_filename, spec_text=spec_text)
 
     def register_routes(self) -> None:
         for path in self.spec.paths():

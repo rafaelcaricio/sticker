@@ -13,7 +13,7 @@ from setuptools import find_packages, setup, Command
 
 # Package meta-data.
 NAME = 'sticker'
-DESCRIPTION = 'Sticker is the glue between Python functions and your API design.'
+DESCRIPTION = 'Sticker is a powerful yet boilerplate-free alternative to writing your web API.'
 URL = 'https://github.com/rafaelcaricio/sticker'
 EMAIL = 'sticker-dev@caric.io'
 AUTHOR = 'Rafael Caricio'

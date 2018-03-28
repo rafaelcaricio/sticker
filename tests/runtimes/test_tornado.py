@@ -1,6 +1,7 @@
 
 from sticker import TornadoAPI
 from tornado.testing import AsyncHTTPTestCase
+
 from tests.conftest import simple_api_get_spec
 
 

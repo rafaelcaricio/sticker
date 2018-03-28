@@ -1,4 +1,4 @@
-from typing import List, Dict, Callable
+from typing import List, Dict, Callable, Optional
 import re
 
 import tornado.web
@@ -8,8 +8,8 @@ from ..openapi import SpecPath, SpecOperation
 
 
 class TornadoAPI(BaseAPI):
-    def __init__(self, spec_filename: str):
-        super().__init__(spec_filename)
+    def __init__(self, spec_filename: Optional[str]=None, spec_text: Optional[str]=None):
+        super().__init__(spec_filename=spec_filename, spec_text=spec_text)
         self.routes: List = None
 
     def get_app(self, *args, **kwargs):
