@@ -35,8 +35,6 @@ You need a little bit of Python.
 
 .. code-block:: python
 
-    # filename: hello.py
-
     def say_hello(params):
         return {"contents": "Hello World!"}
 
@@ -44,7 +42,6 @@ Plus bits of your API description.
 
 .. code-block:: YAML
 
-    # filename: hello.yml
     openapi: "3.0.0"
     paths:
       /:
@@ -94,7 +91,7 @@ The framework setup, validation, types conversion, and mocking is handled at run
 Installation
 ============
 
-Sticker is published at PyPI, so you can use `pip` to install:
+Sticker is published at PyPI, so you can use ``pip`` to install:
 
 .. code-block:: bash
 
@@ -103,7 +100,7 @@ Sticker is published at PyPI, so you can use `pip` to install:
 Requirements
 ============
 
-Sticker was developed for __Python >=3.6__ and __OpenAPI 3.0__. Support for Python 2.7 is not present nor planned for this project.
+Sticker was developed for **Python >=3.6** and **OpenAPI 3.0**. Support for Python 2.7 is not present nor planned for this project.
 
 Documentation
 =============
@@ -152,7 +149,7 @@ Write this part.
 Responses
 ^^^^^^^^^
 
-API handlers are expected to return a Python dictionary (`dict`) object. The returned dictionary defines how a response
+API handlers are expected to return a Python dictionary (``dict``) object. The returned dictionary defines how a response
 will look like. All keys in the dictionary are optional. The expected keys are described in the table bellow.
 
 =========== ======================== ===========
@@ -167,11 +164,11 @@ headers     Dict[str, str]           The HTTP headers to be used in the response
 =========== ======================== ===========
 
 
-We have exposed here some examples of using different configurations of the `dict` we've defined above to describe the
+We have exposed here some examples of using different configurations of the ``dict`` we've defined above to describe the
 HTTP response of API handlers. The actual HTTP response value generated will vary depending on the framework chosen as
 runtime. The examples are a minimal illustration of what to expect to be the HTTP response.
 
-The "content" key can be used when it's desired to return a "Hello world!" string with status `200`.
+The "content" key can be used when it's desired to return a "Hello world!" string with status ``200``.
 
 .. code-block:: python
 
@@ -187,7 +184,7 @@ Results in the HTTP response similar to:
 
     Hello world!
 
-The "json" key can be used when desired to return an JSON response with status `201`.
+The "json" key can be used when desired to return an JSON response with status ``201``.
 
 .. code-block:: python
 
