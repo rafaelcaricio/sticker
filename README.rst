@@ -42,7 +42,7 @@ You need a little bit of Python.
 
 Plus bits of your API description.
 
-.. code-block:: yml
+.. code-block:: YAML
 
     # filename: hello.yml
     openapi: "3.0.0"
