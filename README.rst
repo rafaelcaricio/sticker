@@ -261,6 +261,11 @@ and called every time validation for the endpoint fails.
             "status_code": 400
         }
 
+Developing
+==========
+
+We follow `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
+
 Contributing
 ============
 
